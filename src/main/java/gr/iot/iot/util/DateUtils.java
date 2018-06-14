@@ -8,9 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 
-/**
- * Created by smyrgeorge on 12/1/16.
- */
+
 public class DateUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DateUtils.class);

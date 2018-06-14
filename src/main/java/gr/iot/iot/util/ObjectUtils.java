@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by smyrgeorge on 4/12/17.
- */
+
 public class ObjectUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ObjectUtils.class);

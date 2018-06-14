@@ -14,9 +14,7 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
-/**
- * Created by smyrgeorge on 4/18/17.
- */
+
 @Configuration
 @EnableScheduling
 public class ScheduledConfiguration implements SchedulingConfigurer {

@@ -2,9 +2,7 @@ package gr.iot.iot.exception;
 
 import org.springframework.http.HttpStatus;
 
-/**
- * Created by smyrgeorge on 5/12/17.
- */
+
 public class ServiceException extends RuntimeException {
 
     private final HttpStatus httpStatus;

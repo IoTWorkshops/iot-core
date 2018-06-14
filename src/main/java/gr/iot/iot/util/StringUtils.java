@@ -7,9 +7,7 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.UUID;
 
-/**
- * Created by smyrgeorge on 6/7/17.
- */
+
 public class StringUtils {
 
     private StringUtils() {
