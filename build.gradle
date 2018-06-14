@@ -1,0 +1,99 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        maven {
+            url = 'http://repo.spring.io/milestone'
+        }
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    // https://github.com/researchgate/gradle-release
+    id 'net.researchgate.release' version '2.4.0'
+}
+
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: "io.spring.dependency-management"
+
+jar {
+    baseName = 'iot'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    maven {
+        url = 'http://repo.spring.io/milestone'
+    }
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    //Spring boot:
+    compile('org.springframework.boot:spring-boot-starter-web')
+//    compile('org.springframework.boot:spring-boot-starter-webflux')
+
+    //Cloud config server:
+    compile('org.springframework.cloud:spring-cloud-starter-config')
+//    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+
+    //Swagger:
+    compile('io.springfox:springfox-swagger2:2.5.0')
+    compile('io.springfox:springfox-swagger-ui:2.5.0')
+
+    //PostgreSQL:
+    compile("org.postgresql:postgresql")
+    compile("org.flywaydb:flyway-core:4.0.3")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("com.zaxxer:HikariCP")
+
+    //EHCache:
+    compile("org.springframework:spring-context-support")
+    compile("net.sf.ehcache:ehcache")
+
+    //Spring Developer Tools:
+    compile("org.springframework.boot:spring-boot-devtools")
+
+    //GSON:
+    compile("com.google.code.gson:gson:2.8.2")
+
+    //Apache Libraries:
+    compile("org.apache.commons:commons-io:1.3.2")
+
+    //io.netty:
+    compile("io.netty.netty-all.4.0.4.Final")
+
+
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.M9"
+    }
+}
+
+processResources {
+    filesMatching("**/application.yml") {
+        expand( project.properties )
+    }
+}
+
+test {
+    systemProperty 'spring.cloud.config.uri', 'http://localhost:8888'
+    systemProperty 'spring.profiles.active', 'gradle'
+}

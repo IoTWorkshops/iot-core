@@ -1,0 +1,12 @@
+
+${AnsiColor.GREEN} _____ _        _      _
+${AnsiColor.GREEN}/  ___| |      | |    | |
+${AnsiColor.GREEN}\ `--.| | _____| | ___| |_ ___  _ __
+${AnsiColor.GREEN} `--. \ |/ / _ \ |/ _ \ __/ _ \| '_ \
+${AnsiColor.GREEN}/\__/ /   <  __/ |  __/ || (_) | | | |
+${AnsiColor.GREEN}\____/|_|\_\___|_|\___|\__\___/|_| |_|
+
+
+${AnsiColor.CYAN}:: ΙΟΤ 🤓  :: Running Spring Boot ${spring-boot.version} ::
+
+

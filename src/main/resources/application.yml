@@ -1,0 +1,103 @@
+# Project-specific
+
+#########################################################
+# Default values. This values used when running locally.
+description: test
+name: iot
+version: 0.0.1-SNAPSHOT
+#########################################################
+app:
+  config: local
+  environment: default
+  build:
+    description: ${description}
+    name: ${name}
+    version: ${version}
+
+# Logging
+logging:
+  level:
+    root: INFO
+  console:
+    default:
+      active: false
+    custom:
+      active: true
+      withJansi: true
+      encoder:
+        charset: 'UTF-8'
+        pattern: '%green(%d) %-4relative [%thread] %highlight(%-5level) %cyan(%logger{100}) - %msg%n'
+  syslog:
+    active: false
+    host: localhost
+    port: 514
+    facility: LOCAL0
+    throwableExcluded: true
+    suffixPattern: '%d{ISO8601} [%thread] %-5level %logger{100} - %msg%n%xException'
+    async:
+      active: false
+      queueSize: 10
+  file:
+    active: false
+    file: './logs/iot.log'
+    fileNamePattern: './logs/iot_%d{yyyy-MM-dd}.%i.log.zip'
+    maxFileSize: '2048MB'
+    encoder:
+      charset: 'UTF-8'
+      pattern: '%d %-4relative [%thread] %-5level %logger{100} - %msg%n'
+    async:
+      active: true
+      queueSize: 10
+
+# Tomcat Server
+server:
+  port: 8080
+  tomcat:
+    remote_ip_header: x-forwarded-for
+    protocol_header: x-forwarded-proto
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: 'http://eureka:8761/eureka'
+#    enabled: true
+#  instance:
+#    preferIpAddress: true
+
+# Spring Configuration
+spring:
+  application:
+    name: iot
+  pageable:
+    size: 10
+  async:
+    corePoolSize: 5
+    maxPoolSize: 50
+    queueCapacity: 10000
+  http:
+    multipart:
+      maxFileSize: 15MB
+  # Database
+  datasource:
+    url: jdbc:postgresql://localhost:5432/iot?currentSchema=iot&stringtype=unspecified
+    username: postgres
+    password: www
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        default_schema: iot
+        id:
+          new_generator_mappings: true
+  # Spring DEV-Tools
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+# Swagger
+swagger:
+  title: IOT REST API
+  description: Running at 'localhost'
+  version: v1
